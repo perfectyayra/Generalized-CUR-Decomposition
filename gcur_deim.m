@@ -7,7 +7,7 @@ function [C_A, C_B, R_A, R_B, M, N] = cur_pair_deim(A, B, k, U, V, X)
 %
 % See also cur_deim
 %
-% (C) Perfect Gidisu, Michiel Hochstenbach 2021
+% Reference: Gidisu and Hochstenbach 2021
 
 if nargin < 3 || isempty(k), k = 2; end
 [U, V, X, ~, ~] = gsvd(A,B,0);
