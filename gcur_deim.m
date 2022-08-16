@@ -1,12 +1,12 @@
 function [icol, iA, iB, M, N] = gcur_deim(A, B, k)
 
 %CUR_PAIR_DEIM  DEIM incurred CUR decomposition for matrix pairs
-% [function [irow, iA, iB, M, N] = gcur_deim(A, B, k)
+% function [irow, iA, iB, M, N] = gcur_deim(A, B, k)
 % Matrix A and B should have same number of columns
 % k is the desired rank of the approximation 
-% icol is the column indices selected
-% iA is the row indices of matrix A that has been selected
-% iB is the row indices of matrix B that has been selected
+% icol contains the column indices selected
+% iA contains the row indices of matrix A that has been selected
+% iB contains the row indices of matrix B that has been selected
 % CA = A(:,icol);  CB = B(:,icol);  RA = A(iA,:);  RB = B(iB,:);
 % M and N are the middle matrix of the gcur decomposition of A and B, respectively
 % See also cur_deim
