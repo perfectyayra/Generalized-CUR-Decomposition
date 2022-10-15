@@ -37,13 +37,14 @@ B_center=B-mean(B);
 XX=fliplr(XX);
 YY=inv(XX'); % right generalized singular vectors
 
+k=5; % desired rank 2, 5 or 10 
 
-sv=A_center*V(:,1:2); % projection onto the first two right singular vectors 
-gsv=A_center*YY(:,1:2); % projection onto the first two right generalized singular vectors
+sv=A_center*V(:,1:k); % projection onto the first k right singular vectors 
+gsv=A_center*YY(:,1:k); % projection onto the first k right generalized singular vectors
 
 
-icol=cur_deim(V(:,1:2),2);
-[icol1,~,~,~,~] = gcur_deim(A_center,B_center,2);
+icol=cur_deim(V(:,1:k),k);
+[icol1,~,~,~,~] = gcur_deim(A_center,B_center,k);
 
 
 C_cur=A_center(:,icol);
@@ -79,3 +80,66 @@ for i=0:3
    
     
 end
+
+
+% SVM-ECOC Classification error using GCUR 
+
+t = templateSVM('Standardize',true);
+Md = fitcecoc(C_cur,A_labels,'Learners',t);
+rng(10,'twister') % For reproducibility
+CVMd = crossval(Md);
+genError = kfoldLoss(CVMd);
+
+
+% SVM-ECOC Classification error using GCUR 
+
+Mdl1 = fitcecoc(C_gcur,A_labels,'Learners',t);
+rng(10,'twister') % For reproducibility
+CVMdl1 = crossval(Mdl1);
+genError1 = kfoldLoss(CVMdl1);
+
+
+% % SVM-ECOC Classification error using SVD 
+
+Mdl2 = fitcecoc(sv,A_labels,'Learners',t);
+rng(10,'twister') % For reproducibility
+CVMd2 = crossval(Mdl2);
+genError2 = kfoldLoss(CVMd2);
+
+
+% % SVM-ECOC Classification error using GSVD
+
+Mdl3 = fitcecoc(gsv,A_labels,'Learners',t);
+rng(10,'twister') % For reproducibility
+CVMd3 = crossval(Mdl3);
+genError3 = kfoldLoss(CVMd3);
+
+
+
+% % Decision Tree Classification error using CUR 
+
+ens = fitctree(C_cur,A_labels);
+rng(10,'twister') % For reproducibility
+cvens = crossval(ens);
+L = kfoldLoss(cvens);
+
+
+% Decision Tree Classification error using GCUR 
+ens1 = fitctree(C_gcur,A_labels);
+rng(10,'twister') % For reproducibility
+cvens1 = crossval(ens1);
+L1 = kfoldLoss(cvens1);
+
+
+% Decision Tree Classification error using SVD 
+ens2 = fitctree(sv,A_labels);
+rng(10,'twister') % For reproducibility
+cvens2 = crossval(ens2);
+L2 = kfoldLoss(cvens2);
+
+
+% Decision Tree Classification error using GSVD 
+ens3 = fitctree(gsv,A_labels);
+rng(10,'twister') % For reproducibility
+cvens3 = crossval(ens3);
+L3 = kfoldLoss(cvens3);
