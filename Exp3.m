@@ -38,12 +38,12 @@ XX=fliplr(XX);
 YY=inv(XX'); % right generalized singular vectors
 
 
-sv=A_center*V(:,1:10); % projection onto the right singular vectors 
-gsv=A_center*YY(:,1:10); % projection onto the right generalized singular vectors
+sv=A_center*V(:,1:2); % projection onto the first two right singular vectors 
+gsv=A_center*YY(:,1:2); % projection onto the first two right generalized singular vectors
 
 
-icol=cur_deim(V(:,1:10),10);
-icol1 = cur_deim(XX(:,1:10),10);
+icol=cur_deim(V(:,1:2),2);
+[icol1,~,~,~,~] = gcur_deim(A_center,B_center,2);
 
 
 C_cur=A_center(:,icol);
