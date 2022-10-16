@@ -19,9 +19,9 @@ U = fliplr(U);       % Select largest (C,S) pairs
 V = fliplr(V);
 Y = fliplr(Y);
 
-icol=zeros(1:k);
-iA=zeros(1:k);
-iB=zeros(1:k);
+icol=zeros(1,k);
+iA=zeros(1,k);
+iB=zeros(1,k);
 for j = 1:k
   [~, icol(j)] = max(abs(Y(:,j)));    % Iterative selection and projection
   [~, iA(j)] = max(abs(U(:,j)));
