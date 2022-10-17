@@ -18,7 +18,7 @@ YY=inv(XX'); % generalized right singular vectors
 sv=A_center*V(:,1:3);
 gsv=A_center*YY(:,1:3);
 
-icol=cur_deim(V(:,1:3),3);
+[icol,~,~]=cur_deim(A_center,3);
 [icol1,~,~,~,~] = gcur_deim(A_center,B_cente,3);
 
 C_cur=A_center(:,icol);
