@@ -43,7 +43,7 @@ sv=A_center*V(:,1:k); % projection onto the first k right singular vectors
 gsv=A_center*YY(:,1:k); % projection onto the first k right generalized singular vectors
 
 
-icol=cur_deim(V(:,1:k),k);
+[icol,~,~]=cur_deim(A_center,k);
 [icol1,~,~,~,~] = gcur_deim(A_center,B_center,k);
 
 
