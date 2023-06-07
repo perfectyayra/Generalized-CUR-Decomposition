@@ -1,7 +1,7 @@
 function [icol, iA, iB, M, N] = gcur_deim(A, B, k)
 
 %CUR_PAIR_DEIM  DEIM incurred CUR decomposition for matrix pairs
-% function [irow, iA, iB, M, N] = gcur_deim(A, B, k)
+% function [icol, iA, iB, M, N] = gcur_deim(A, B, k)
 % Matrix A and B should have same number of columns
 % k is the desired rank of the approximation 
 % icol contains the column indices selected
