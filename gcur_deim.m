@@ -36,5 +36,5 @@ C_A = A(:,icol);
 C_B = B(:,icol);  
 R_A = A(iA,:);  
 R_B = B(iB,:);
-M = pinv(C_A)*A*pinv(R_A);
-N =pinv(C_B)*B*pinv(R_B);
+M = C_A\(A/R_A);
+N =C_B\(B/R_B);
